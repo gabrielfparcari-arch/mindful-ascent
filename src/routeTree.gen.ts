@@ -9,38 +9,206 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ContaRouteImport } from './routes/conta'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SaudeMentalIndexRouteImport } from './routes/saude-mental.index'
+import { Route as MiniLivrosIndexRouteImport } from './routes/mini-livros.index'
+import { Route as MedicinaIndexRouteImport } from './routes/medicina.index'
+import { Route as SaudeMentalSlugRouteImport } from './routes/saude-mental.$slug'
+import { Route as MiniLivrosSlugRouteImport } from './routes/mini-livros.$slug'
+import { Route as MedicinaPlanosRouteImport } from './routes/medicina.planos'
+import { Route as MedicinaBibliotecaRouteImport } from './routes/medicina.biblioteca'
+import { Route as PagamentoKindSlugRouteImport } from './routes/pagamento.$kind.$slug'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContaRoute = ContaRouteImport.update({
+  id: '/conta',
+  path: '/conta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SaudeMentalIndexRoute = SaudeMentalIndexRouteImport.update({
+  id: '/saude-mental/',
+  path: '/saude-mental/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniLivrosIndexRoute = MiniLivrosIndexRouteImport.update({
+  id: '/mini-livros/',
+  path: '/mini-livros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinaIndexRoute = MedicinaIndexRouteImport.update({
+  id: '/medicina/',
+  path: '/medicina/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SaudeMentalSlugRoute = SaudeMentalSlugRouteImport.update({
+  id: '/saude-mental/$slug',
+  path: '/saude-mental/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniLivrosSlugRoute = MiniLivrosSlugRouteImport.update({
+  id: '/mini-livros/$slug',
+  path: '/mini-livros/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinaPlanosRoute = MedicinaPlanosRouteImport.update({
+  id: '/medicina/planos',
+  path: '/medicina/planos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinaBibliotecaRoute = MedicinaBibliotecaRouteImport.update({
+  id: '/medicina/biblioteca',
+  path: '/medicina/biblioteca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoKindSlugRoute = PagamentoKindSlugRouteImport.update({
+  id: '/pagamento/$kind/$slug',
+  path: '/pagamento/$kind/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
+  '/conta': typeof ContaRoute
+  '/login': typeof LoginRoute
+  '/medicina/biblioteca': typeof MedicinaBibliotecaRoute
+  '/medicina/planos': typeof MedicinaPlanosRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/medicina/': typeof MedicinaIndexRoute
+  '/mini-livros/': typeof MiniLivrosIndexRoute
+  '/saude-mental/': typeof SaudeMentalIndexRoute
+  '/pagamento/$kind/$slug': typeof PagamentoKindSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
+  '/conta': typeof ContaRoute
+  '/login': typeof LoginRoute
+  '/medicina/biblioteca': typeof MedicinaBibliotecaRoute
+  '/medicina/planos': typeof MedicinaPlanosRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/medicina': typeof MedicinaIndexRoute
+  '/mini-livros': typeof MiniLivrosIndexRoute
+  '/saude-mental': typeof SaudeMentalIndexRoute
+  '/pagamento/$kind/$slug': typeof PagamentoKindSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
+  '/conta': typeof ContaRoute
+  '/login': typeof LoginRoute
+  '/medicina/biblioteca': typeof MedicinaBibliotecaRoute
+  '/medicina/planos': typeof MedicinaPlanosRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/medicina/': typeof MedicinaIndexRoute
+  '/mini-livros/': typeof MiniLivrosIndexRoute
+  '/saude-mental/': typeof SaudeMentalIndexRoute
+  '/pagamento/$kind/$slug': typeof PagamentoKindSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cadastro'
+    | '/conta'
+    | '/login'
+    | '/medicina/biblioteca'
+    | '/medicina/planos'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/medicina/'
+    | '/mini-livros/'
+    | '/saude-mental/'
+    | '/pagamento/$kind/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cadastro'
+    | '/conta'
+    | '/login'
+    | '/medicina/biblioteca'
+    | '/medicina/planos'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/medicina'
+    | '/mini-livros'
+    | '/saude-mental'
+    | '/pagamento/$kind/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/cadastro'
+    | '/conta'
+    | '/login'
+    | '/medicina/biblioteca'
+    | '/medicina/planos'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/medicina/'
+    | '/mini-livros/'
+    | '/saude-mental/'
+    | '/pagamento/$kind/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CadastroRoute: typeof CadastroRoute
+  ContaRoute: typeof ContaRoute
+  LoginRoute: typeof LoginRoute
+  MedicinaBibliotecaRoute: typeof MedicinaBibliotecaRoute
+  MedicinaPlanosRoute: typeof MedicinaPlanosRoute
+  MiniLivrosSlugRoute: typeof MiniLivrosSlugRoute
+  SaudeMentalSlugRoute: typeof SaudeMentalSlugRoute
+  MedicinaIndexRoute: typeof MedicinaIndexRoute
+  MiniLivrosIndexRoute: typeof MiniLivrosIndexRoute
+  SaudeMentalIndexRoute: typeof SaudeMentalIndexRoute
+  PagamentoKindSlugRoute: typeof PagamentoKindSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conta': {
+      id: '/conta'
+      path: '/conta'
+      fullPath: '/conta'
+      preLoaderRoute: typeof ContaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +216,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/saude-mental/': {
+      id: '/saude-mental/'
+      path: '/saude-mental'
+      fullPath: '/saude-mental/'
+      preLoaderRoute: typeof SaudeMentalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini-livros/': {
+      id: '/mini-livros/'
+      path: '/mini-livros'
+      fullPath: '/mini-livros/'
+      preLoaderRoute: typeof MiniLivrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicina/': {
+      id: '/medicina/'
+      path: '/medicina'
+      fullPath: '/medicina/'
+      preLoaderRoute: typeof MedicinaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saude-mental/$slug': {
+      id: '/saude-mental/$slug'
+      path: '/saude-mental/$slug'
+      fullPath: '/saude-mental/$slug'
+      preLoaderRoute: typeof SaudeMentalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini-livros/$slug': {
+      id: '/mini-livros/$slug'
+      path: '/mini-livros/$slug'
+      fullPath: '/mini-livros/$slug'
+      preLoaderRoute: typeof MiniLivrosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicina/planos': {
+      id: '/medicina/planos'
+      path: '/medicina/planos'
+      fullPath: '/medicina/planos'
+      preLoaderRoute: typeof MedicinaPlanosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicina/biblioteca': {
+      id: '/medicina/biblioteca'
+      path: '/medicina/biblioteca'
+      fullPath: '/medicina/biblioteca'
+      preLoaderRoute: typeof MedicinaBibliotecaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/$kind/$slug': {
+      id: '/pagamento/$kind/$slug'
+      path: '/pagamento/$kind/$slug'
+      fullPath: '/pagamento/$kind/$slug'
+      preLoaderRoute: typeof PagamentoKindSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CadastroRoute: CadastroRoute,
+  ContaRoute: ContaRoute,
+  LoginRoute: LoginRoute,
+  MedicinaBibliotecaRoute: MedicinaBibliotecaRoute,
+  MedicinaPlanosRoute: MedicinaPlanosRoute,
+  MiniLivrosSlugRoute: MiniLivrosSlugRoute,
+  SaudeMentalSlugRoute: SaudeMentalSlugRoute,
+  MedicinaIndexRoute: MedicinaIndexRoute,
+  MiniLivrosIndexRoute: MiniLivrosIndexRoute,
+  SaudeMentalIndexRoute: SaudeMentalIndexRoute,
+  PagamentoKindSlugRoute: PagamentoKindSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
