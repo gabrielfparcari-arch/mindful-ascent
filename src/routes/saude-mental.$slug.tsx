@@ -46,7 +46,7 @@ function TopicPage() {
 
         <Section title="Primeiros sinais">
           <ul className="space-y-3">
-            {topic.signs.map((s) => (
+            {topic.signs.map((s: string) => (
               <li key={s} className="flex gap-3 items-start">
                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold shrink-0" />
                 <span>{s}</span>
@@ -57,7 +57,7 @@ function TopicPage() {
 
         <Section title="Sintomas">
           <ul className="space-y-3">
-            {topic.symptoms.map((s) => (
+            {topic.symptoms.map((s: string) => (
               <li key={s} className="flex gap-3 items-start">
                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40 shrink-0" />
                 <span>{s}</span>
@@ -68,7 +68,7 @@ function TopicPage() {
 
         <Section title="Orientações gerais">
           <div className="grid gap-3">
-            {topic.guidance.map((g, i) => (
+            {topic.guidance.map((g: string, i: number) => (
               <div key={g} className="rounded-2xl bg-cream/60 hairline p-5 flex gap-4">
                 <span className="font-serif text-2xl text-gold">{String(i + 1).padStart(2, "0")}</span>
                 <p className="leading-relaxed">{g}</p>

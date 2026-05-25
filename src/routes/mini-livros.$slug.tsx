@@ -83,7 +83,7 @@ function BookPage() {
 
             <h3 className="font-serif text-2xl mt-12">Prévia dos capítulos</h3>
             <div className="mt-4 space-y-3">
-              {book.chapters.map((c, i) => (
+              {book.chapters.map((c: { title: string; preview: string }, i: number) => (
                 <div key={c.title} className="rounded-2xl hairline p-5">
                   <div className="text-xs text-gold">Capítulo {i + 1}</div>
                   <div className="font-serif text-xl mt-1">{c.title}</div>
