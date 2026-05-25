@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SaudeMentalIndexRouteImport } from './routes/saude-mental.index'
+import { Route as MiniLivrosIndexRouteImport } from './routes/mini-livros.index'
+import { Route as SaudeMentalSlugRouteImport } from './routes/saude-mental.$slug'
+import { Route as MiniLivrosSlugRouteImport } from './routes/mini-livros.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SaudeMentalIndexRoute = SaudeMentalIndexRouteImport.update({
+  id: '/saude-mental/',
+  path: '/saude-mental/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniLivrosIndexRoute = MiniLivrosIndexRouteImport.update({
+  id: '/mini-livros/',
+  path: '/mini-livros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SaudeMentalSlugRoute = SaudeMentalSlugRouteImport.update({
+  id: '/saude-mental/$slug',
+  path: '/saude-mental/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniLivrosSlugRoute = MiniLivrosSlugRouteImport.update({
+  id: '/mini-livros/$slug',
+  path: '/mini-livros/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/mini-livros/': typeof MiniLivrosIndexRoute
+  '/saude-mental/': typeof SaudeMentalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/mini-livros': typeof MiniLivrosIndexRoute
+  '/saude-mental': typeof SaudeMentalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mini-livros/$slug': typeof MiniLivrosSlugRoute
+  '/saude-mental/$slug': typeof SaudeMentalSlugRoute
+  '/mini-livros/': typeof MiniLivrosIndexRoute
+  '/saude-mental/': typeof SaudeMentalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/mini-livros/'
+    | '/saude-mental/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/mini-livros'
+    | '/saude-mental'
+  id:
+    | '__root__'
+    | '/'
+    | '/mini-livros/$slug'
+    | '/saude-mental/$slug'
+    | '/mini-livros/'
+    | '/saude-mental/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MiniLivrosSlugRoute: typeof MiniLivrosSlugRoute
+  SaudeMentalSlugRoute: typeof SaudeMentalSlugRoute
+  MiniLivrosIndexRoute: typeof MiniLivrosIndexRoute
+  SaudeMentalIndexRoute: typeof SaudeMentalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,12 +104,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/saude-mental/': {
+      id: '/saude-mental/'
+      path: '/saude-mental'
+      fullPath: '/saude-mental/'
+      preLoaderRoute: typeof SaudeMentalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini-livros/': {
+      id: '/mini-livros/'
+      path: '/mini-livros'
+      fullPath: '/mini-livros/'
+      preLoaderRoute: typeof MiniLivrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saude-mental/$slug': {
+      id: '/saude-mental/$slug'
+      path: '/saude-mental/$slug'
+      fullPath: '/saude-mental/$slug'
+      preLoaderRoute: typeof SaudeMentalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini-livros/$slug': {
+      id: '/mini-livros/$slug'
+      path: '/mini-livros/$slug'
+      fullPath: '/mini-livros/$slug'
+      preLoaderRoute: typeof MiniLivrosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MiniLivrosSlugRoute: MiniLivrosSlugRoute,
+  SaudeMentalSlugRoute: SaudeMentalSlugRoute,
+  MiniLivrosIndexRoute: MiniLivrosIndexRoute,
+  SaudeMentalIndexRoute: SaudeMentalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
